@@ -27,8 +27,11 @@ proxy-providers:
 rules:
   - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
   - GEOIP,private,REJECT,no-resolve
+# BLOCK DNS DOH/DOH3/DOT/DOQ
   - GEOSITE,rule-doh,REJECT
   - AND,((GEOIP,doh),(NOT,(DST-PORT,53))),REJECT
+  - AND,((NETWORK,TCP),(DST-PORT,853)),REJECT
+# BLOCK MALWARE SITES
   - GEOSITE,rule-malicious,REJECT
 # ADS & NSFW
   - GEOSITE,oisd-full,ADs
