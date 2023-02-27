@@ -29,7 +29,7 @@ rules:
   - GEOIP,private,REJECT,no-resolve
 # BLOCK DNS DOH/DOH3/DOT/DOQ
   - GEOSITE,rule-doh,REJECT
-  - AND,((GEOIP,doh),(NOT,(DST-PORT,53))),REJECT
+  - AND,((GEOIP,doh),(NOT,((DST-PORT,53)))),REJECT
   - AND,((NETWORK,TCP),(DST-PORT,853)),REJECT
 # BLOCK MALWARE SITES
   - GEOSITE,rule-malicious,REJECT
